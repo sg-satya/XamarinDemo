@@ -1,0 +1,167 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="DemoApp.MainPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Name="RootPage">
+
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="FrameStyle" TargetType="Frame">
+                <Setter Property="Padding" Value="10,10" />
+                <Setter Property="BackgroundColor" Value="White" />
+                <Setter Property="HorizontalOptions" Value="Start" />
+                <Setter Property="TranslationX" Value="20" />
+                <Setter Property="TranslationY" Value="-110" />
+                <Setter Property="Margin" Value="0,0,0,-30" />
+            </Style>
+            <Color x:Key="textDarkGray">#4D4D4D</Color>
+            <Color x:Key="btnblue">#294B70</Color>
+            <Color x:Key="btnred">#F3322D</Color>
+            <Color x:Key="btnlime">#85AF1F</Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        <StackLayout Grid.Row="0">
+            <Frame
+                Padding="24"
+                BackgroundColor="#2196F3"
+                CornerRadius="0">
+                <StackLayout Orientation="Horizontal">
+                    <Image HeightRequest="24" Source="exit.png" />
+                    <Label
+                        FontSize="30"
+                        HorizontalOptions="StartAndExpand"
+                        HorizontalTextAlignment="Center"
+                        Text="Form Field"
+                        TextColor="White" />
+                    <Image HeightRequest="20" Source="homewhite.png" />
+                </StackLayout>
+            </Frame>
+            <Button
+                Clicked="Button_Clicked"
+                HorizontalOptions="CenterAndExpand"
+                Text="Open Details"
+                VerticalOptions="CenterAndExpand" />
+        </StackLayout>
+        <BoxView
+            x:Name="PageFader"
+            Grid.Row="0"
+            Grid.RowSpan="1"
+            BackgroundColor="Gray"
+            IsVisible="false"
+            Opacity="0">
+            <BoxView.GestureRecognizers>
+                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+            </BoxView.GestureRecognizers>
+        </BoxView>
+
+        <Frame
+            x:Name="DetailsView"
+            Grid.Row="0"
+            CornerRadius="30"
+            TranslationY="{Binding Source={x:Reference RootPage}, Path=Height}">
+            <ScrollView>
+                <StackLayout BackgroundColor="White">
+                    <Label
+                        Margin="0,-10,0,0"
+                        FontSize="27"
+                        Text="Leave Request"
+                        TextColor="{StaticResource textDarkGray}" />
+                    <BoxView
+                        Margin="0,0,0,30"
+                        BackgroundColor="{StaticResource btnlime}"
+                        CornerRadius="10"
+                        HeightRequest="6"
+                        HorizontalOptions="StartAndExpand"
+                        WidthRequest="270" />
+
+                    <Frame
+                        Margin="0"
+                        BorderColor="Gray"
+                        CornerRadius="10">
+                        <StackLayout Orientation="Horizontal">
+                            <DatePicker HorizontalOptions="StartAndExpand" />
+                            <Image HeightRequest="20" Source="calendar.png" />
+                        </StackLayout>
+                    </Frame>
+                    <Frame Style="{StaticResource FrameStyle}">
+                        <Label
+                            FontSize="Body"
+                            Text="Start Date"
+                            TextColor="{StaticResource textDarkGray}" />
+                    </Frame>
+
+                    <Frame
+                        Margin="0"
+                        BorderColor="Gray"
+                        CornerRadius="10">
+                        <StackLayout Orientation="Horizontal">
+                            <DatePicker HorizontalOptions="StartAndExpand" />
+                            <Image HeightRequest="20" Source="calendar.png" />
+                        </StackLayout>
+                    </Frame>
+                    <Frame Style="{StaticResource FrameStyle}">
+                        <Label
+                            FontSize="Body"
+                            Text="End Date"
+                            TextColor="{StaticResource textDarkGray}" />
+                    </Frame>
+                    <Picker x:Name="picker" Title="-Leave Type-">
+                        <Picker.ItemsSource>
+                            <x:Array Type="{x:Type x:String}">
+                                <x:String>Vacation</x:String>
+                                <x:String>Urgent</x:String>
+                            </x:Array>
+                        </Picker.ItemsSource>
+                    </Picker>
+                    <StackLayout Orientation="Horizontal">
+                        <Button
+                            Padding="0"
+                            BackgroundColor="{StaticResource btnblue}"
+                            HeightRequest="30"
+                            HorizontalOptions="Start"
+                            Text="File"
+                            TextColor="White" />
+                        <Label
+                            Text="No Files"
+                            TextColor="{StaticResource textDarkGray}"
+                            VerticalOptions="CenterAndExpand" />
+                    </StackLayout>
+                    <BoxView
+                        Margin="0,0,0,10"
+                        BackgroundColor="DarkGray"
+                        HeightRequest=".1" />
+                    <Frame
+                        Padding="10,0"
+                        BorderColor="Gray"
+                        CornerRadius="10">
+                        <Editor HeightRequest="100" Text="Remarks" />
+                    </Frame>
+
+                    <StackLayout
+                        Margin="0,10,0,60"
+                        HorizontalOptions="End"
+                        Orientation="Horizontal">
+                        <Button
+                            BackgroundColor="{StaticResource btnred}"
+                            CornerRadius="10"
+                            Text="Reset"
+                            TextColor="White" />
+                        <Button
+                            BackgroundColor="{StaticResource btnlime}"
+                            CornerRadius="10"
+                            Text="Save"
+                            TextColor="White" />
+                    </StackLayout>
+                </StackLayout>
+
+            </ScrollView>
+        </Frame>
+    </Grid>
+</ContentPage>
